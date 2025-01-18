@@ -18,3 +18,10 @@ cd hello
 go mod tidy
 go run .
 ```
+
+## Test
+
+```sh
+cd greetings
+go test -v
+```
