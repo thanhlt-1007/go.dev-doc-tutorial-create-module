@@ -1,16 +1,33 @@
 package greetings
 
 import (
-	"errors"
+	"crypto/rand"
 	"fmt"
+	"math/big"
+
+	"tutorial/greetings/errs"
 )
 
 func Hello(name string) (string, error) {
 	if name == "" {
-		return "", errors.New("empty name")
+		return "", fmt.Errorf("hello: %w", errs.NewEmptyNameError())
 	}
 
-	message := fmt.Sprintf("Hi, %s. Welcome!", name)
+	format := randomFormat()
+	message := fmt.Sprintf(format, name)
 
 	return message, nil
+}
+
+func randomFormat() string {
+	formats := []string{
+		"Hi, %s. Welcome!",
+		"Great to see you, %s!",
+		"Hail, %s! Well met!",
+	}
+
+	size := len(formats)
+	n, _ := rand.Int(rand.Reader, big.NewInt(int64(size)))
+
+	return formats[n.Int64()]
 }
