@@ -10,6 +10,10 @@ func main() {
 	log.SetPrefix("greetings: ")
 	log.SetFlags(log.Lshortfile) // 16
 
-	message := greetings.Hello("Gladys")
+	message, err := greetings.Hello("")
+	if err != nil {
+		log.Fatal(err)
+	}
+
 	log.Println(message)
 }
