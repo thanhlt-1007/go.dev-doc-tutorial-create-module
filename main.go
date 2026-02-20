@@ -1,15 +1,15 @@
 package main
 
 import (
-	"fmt"
+	"log"
 
-	"rsc.io/quote/v4"
+	"tutorial/greetings"
 )
 
 func main() {
-	fmt.Println("Hello, World!")
-	fmt.Println(quote.Glass())
-	fmt.Println(quote.Go())
-	fmt.Println(quote.Hello())
-	fmt.Println(quote.Opt())
+	log.SetPrefix("greetings: ")
+	log.SetFlags(log.Lshortfile) // 16
+
+	message := greetings.Hello("Gladys")
+	log.Println(message)
 }
